@@ -6,4 +6,7 @@ module UsersHelper
     gravatar_url = "https://secure.gravatar.com/avatar/#{gravatar_id}?s=#{size}"
     image_tag(gravatar_url, alt: user.name, class: "gravatar")
   end
+  def remove_sensitive_error_messages_from_user(user)
+    @user.errors.full_messages.delete_if { |msg| msg =~ /digest/ }
+  end
 end
